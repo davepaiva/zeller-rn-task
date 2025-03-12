@@ -68,10 +68,12 @@ export type ZellerCustomerConnection = {
   nextToken?: Maybe<Scalars['String']['output']>;
 };
 
-export type ListZellerCustomersQueryVariables = Exact<{ [key: string]: never; }>;
+export type ListZellerCustomersQueryVariables = Exact<{
+  role?: InputMaybe<Scalars['String']['input']>;
+}>;
 
 
-export type ListZellerCustomersQuery = { __typename?: 'Query', listZellerCustomers?: { __typename?: 'ZellerCustomerConnection', items?: Array<{ __typename?: 'ZellerCustomer', name?: string | null, role?: string | null } | null> | null } | null };
+export type ListZellerCustomersQuery = { __typename?: 'Query', listZellerCustomers?: { __typename?: 'ZellerCustomerConnection', items?: Array<{ __typename?: 'ZellerCustomer', id: string, name?: string | null, role?: string | null } | null> | null } | null };
 
 
-export const ListZellerCustomersDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"ListZellerCustomers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"listZellerCustomers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"role"}}]}}]}}]}}]} as unknown as DocumentNode<ListZellerCustomersQuery, ListZellerCustomersQueryVariables>;
+export const ListZellerCustomersDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"ListZellerCustomers"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"role"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"listZellerCustomers"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"role"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"role"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"role"}}]}}]}}]}}]} as unknown as DocumentNode<ListZellerCustomersQuery, ListZellerCustomersQueryVariables>;

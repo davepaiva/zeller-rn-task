@@ -12,6 +12,7 @@ module.exports = {
           '@app_types': './src/types',
           '@styles': './src/ui/styles',
           '@api': './src/api',
+          '@hooks': './src/hooks',
         },
       },
     ],
