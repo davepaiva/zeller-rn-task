@@ -4,16 +4,18 @@ import {Text as RNText, TextProps, StyleSheet} from 'react-native';
 interface CustomTextProps extends TextProps {
   children: React.ReactNode;
   variant?: 'body' | 'heading' | 'subtitle';
+  color?: string;
 }
 
-export const Text = ({
+const Text = ({
   children,
   variant = 'body',
   style,
+  color = '#000',
   ...props
 }: CustomTextProps) => {
   return (
-    <RNText style={[styles[variant], style]} {...props}>
+    <RNText style={[styles[variant], {color}, style]} {...props}>
       {children}
     </RNText>
   );
@@ -21,17 +23,15 @@ export const Text = ({
 
 const styles = StyleSheet.create({
   body: {
-    fontSize: 16,
-    lineHeight: 24,
+    fontSize: 14,
   },
   heading: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    lineHeight: 32,
+    fontSize: 16,
+    fontWeight: '500',
   },
   subtitle: {
     fontSize: 12,
-    lineHeight: 16,
-    color: '#666',
   },
 });
+
+export default Text;
