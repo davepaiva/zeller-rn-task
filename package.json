@@ -7,16 +7,25 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
+    "codegen": "graphql-codegen",
+    "codegen-watch": "yarn codegen --watch",
     "test": "jest"
   },
   "dependencies": {
+    "@apollo/client": "^3.13.4",
+    "graphql": "^16.10.0",
     "react": "19.0.0",
+    "react-native": "0.78.0",
     "react-native-config": "^1.5.5",
+    "react-native-radio-buttons-group": "^3.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@babel/preset-env": "^7.25.3",
     "@babel/runtime": "^7.25.0",
+    "@graphql-codegen/cli": "^5.0.5",
+    "@graphql-codegen/client-preset": "^4.7.0",
+    "@parcel/watcher": "^2.5.1",
     "@react-native-community/cli": "15.0.1",
     "@react-native-community/cli-platform-android": "15.0.1",
     "@react-native-community/cli-platform-ios": "15.0.1",
@@ -27,6 +36,7 @@
     "@types/jest": "^29.5.13",
     "@types/react": "^19.0.0",
     "@types/react-test-renderer": "^19.0.0",
+    "dotenv": "^16.4.7",
     "eslint": "^8.19.0",
     "jest": "^29.6.3",
     "prettier": "2.8.8",
