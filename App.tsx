@@ -1,7 +1,8 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {SafeAreaView, StyleSheet} from 'react-native';
 import Config from 'react-native-config';
 import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client';
+import CustomerListScreen from '@screens/CustomerListScreen.tsx';
 
 const client = new ApolloClient({
   uri: `${Config.BASE_URL}/graphql`,
@@ -11,10 +12,9 @@ const client = new ApolloClient({
 function App(): React.JSX.Element {
   return (
     <ApolloProvider client={client}>
-      <View style={styles.container}>
-        <Text style={styles.text}>Hello World!</Text>
-        <Text style={styles.text}>{Config.BASE_URL}</Text>
-      </View>
+      <SafeAreaView style={styles.container}>
+        <CustomerListScreen />
+      </SafeAreaView>
     </ApolloProvider>
   );
 }
