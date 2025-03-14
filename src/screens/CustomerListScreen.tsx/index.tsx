@@ -2,7 +2,7 @@ import React, {useMemo, useState} from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
 import useListZellerCustomers from '@hooks/useListZellerCustomers';
 import Text from '@components/Text';
-import RadioButtons, {RadioButtonOption} from '@components/RadioButtons';
+import RadioButtons, {RadioButtonOption} from '@components/RadioButton';
 import {globalStyles} from '@styles/globalStyles';
 import CustomerListItem from './components/CustomerListItem';
 import ListHeaderComponent from './components/ListHeader';

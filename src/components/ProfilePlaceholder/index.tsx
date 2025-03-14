@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import Text from './Text';
+import Text from 'src/components/Text';
 
 interface ProfilePlaceholderProps {
   name: string;

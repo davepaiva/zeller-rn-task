@@ -10,9 +10,9 @@ const config = {
   resolver: {
     extraNodeModules: {
       '@screens': `${__dirname}/src/screens`,
-      '@components': `${__dirname}/src/ui/components`,
+      '@components': `${__dirname}/src/components`,
       '@app_types': `${__dirname}/src/types`,
-      '@styles': `${__dirname}/src/ui/styles`,
+      '@styles': `${__dirname}/src/styles`,
       '@api': `${__dirname}/src/api`,
       '@hooks': `${__dirname}/src/hooks`,
     },

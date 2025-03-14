@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import Text from '../../../ui/components/Text';
-import ProfilePlaceholder from '../../../ui/components/ProfilePlaceholder';
+import Text from '@components/Text';
+import ProfilePlaceholder from '@components/ProfilePlaceholder';
 import {globalStyles} from '@styles/globalStyles';
 
 interface CustomerListItemProps {
