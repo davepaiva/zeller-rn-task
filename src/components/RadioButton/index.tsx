@@ -1,3 +1,4 @@
+import theme from '@styles/theme';
 import React from 'react';
 import {StyleProp, ViewStyle} from 'react-native';
 import RadioGroup, {RadioButtonProps} from 'react-native-radio-buttons-group';
@@ -15,35 +16,32 @@ interface RadioButtonsProps {
   onSelect: (selectedId: string) => void;
   layout?: 'row' | 'column';
   containerStyle?: StyleProp<ViewStyle>;
-  color?: string;
-  size?: number;
 }
 
+export const getRadioButtonStyle = (isSelected: boolean) => {
+  return {
+    width: '100%' as const,
+    padding: 8,
+    borderRadius: 8,
+    backgroundColor: isSelected ? theme.colors.accent : 'transparent',
+  };
+};
 const RadioButtons: React.FC<RadioButtonsProps> = ({
   options,
   selectedId,
   onSelect,
   layout = 'column',
   containerStyle,
-  color = '#428BCA',
-  size = 18,
 }) => {
   const radioButtons: RadioButtonProps[] = options.map(option => ({
     id: option.id,
     label: option.label,
     value: option.value,
-    color,
-    borderColor: color,
+    color: theme.colors.primary,
+    borderColor: theme.colors.primary,
     borderSize: 1,
-    size,
-    containerStyle: {
-      width: '100%',
-      padding: 8,
-      borderRadius: 8,
-      backgroundColor: option.isSelected
-        ? 'rgba(66, 139, 202, 0.2)'
-        : 'transparent',
-    },
+    size: 18,
+    containerStyle: getRadioButtonStyle(option.isSelected),
   }));
 
   return (
