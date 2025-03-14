@@ -1,6 +1,5 @@
 import {render, fireEvent} from '@testing-library/react-native';
 import RadioButtons from '../index';
-import theme from '@styles/theme';
 
 // Define the style function inside the mock
 jest.mock('react-native-radio-buttons-group', () => {
