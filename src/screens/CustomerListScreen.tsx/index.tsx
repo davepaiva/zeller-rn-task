@@ -2,7 +2,7 @@ import React, {useMemo, useState} from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
 import useListZellerCustomers from '@hooks/useListZellerCustomers';
 import Text from '@components/Text';
-import RadioButtons, {RadioButtonOption} from '@components/RadioButtons';
+import RadioButtons, {RadioButtonOption} from '@components/RadioButton';
 import {globalStyles} from '@styles/globalStyles';
 import CustomerListItem from './components/CustomerListItem';
 import ListHeaderComponent from './components/ListHeader';
@@ -40,22 +40,6 @@ const CustomerListScreen = () => {
     setSelectedFilter(selectedId as FilterId);
   };
 
-  if (loading) {
-    return (
-      <View style={[styles.container, globalStyles.center]}>
-        <Text>Loading...</Text>
-      </View>
-    );
-  }
-
-  if (error) {
-    return (
-      <View style={[styles.container, globalStyles.center]}>
-        <Text>Error: {error.message || 'Something went wrong'}</Text>
-      </View>
-    );
-  }
-
   const renderItem = ({item}: {item: Customer}) => (
     <CustomerListItem name={item.name} role={item.role} />
   );
@@ -72,6 +56,37 @@ const CustomerListScreen = () => {
       role: item?.role || '',
     }));
 
+  const renderContent = () => {
+    switch (true) {
+      case !!error:
+        return (
+          <View testID="error" style={[styles.container, globalStyles.center]}>
+            <Text>Error: {error.message || 'Something went wrong'}</Text>
+          </View>
+        );
+      case !loading && !error:
+        return (
+          <FlatList
+            testID="customer-list"
+            ListHeaderComponent={renderListHeader}
+            data={customers}
+            renderItem={renderItem}
+            ItemSeparatorComponent={ItemSeparator}
+            keyExtractor={item => item.id}
+          />
+        );
+      case loading:
+      default:
+        return (
+          <View
+            testID="loading"
+            style={[styles.container, globalStyles.center]}>
+            <Text>Loading...</Text>
+          </View>
+        );
+    }
+  };
+
   return (
     <View style={styles.container}>
       {/* <Divider /> */}
@@ -86,13 +101,7 @@ const CustomerListScreen = () => {
       </View>
 
       <Divider />
-      <FlatList
-        ListHeaderComponent={renderListHeader}
-        data={customers}
-        renderItem={renderItem}
-        ItemSeparatorComponent={ItemSeparator}
-        keyExtractor={item => item.id}
-      />
+      {renderContent()}
     </View>
   );
 };

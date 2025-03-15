@@ -1,3 +1,4 @@
+import theme from '@styles/theme';
 import React from 'react';
 import {Text as RNText, TextProps, StyleSheet} from 'react-native';
 
@@ -23,14 +24,14 @@ const Text = ({
 
 const styles = StyleSheet.create({
   body: {
-    fontSize: 14,
+    fontSize: theme.fontSizes.body,
   },
   heading: {
-    fontSize: 16,
-    fontWeight: '500',
+    fontSize: theme.fontSizes.heading,
+    fontWeight: theme.fontWeights.heading,
   },
   subtitle: {
-    fontSize: 12,
+    fontSize: theme.fontSizes.subtitle,
   },
 });
 

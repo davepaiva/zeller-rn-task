@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import Text from './Text';
+import Text from '@components/Text';
 
 interface ProfilePlaceholderProps {
   name: string;
@@ -10,13 +10,17 @@ interface ProfilePlaceholderProps {
 
 const ProfilePlaceholder: React.FC<ProfilePlaceholderProps> = ({name}) => {
   const getInitials = (name: string): string => {
-    const parts = name.split('');
+    const nameString = String(name);
+    if (!nameString) return '';
+    const parts = nameString.split('');
     return parts[0];
   };
 
   return (
     <View style={[styles.container]}>
-      <Text color="#428BCA">{getInitials(name)}</Text>
+      <Text testID="initial" color="#428BCA">
+        {getInitials(name)}
+      </Text>
     </View>
   );
 };

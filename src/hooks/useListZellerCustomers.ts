@@ -18,7 +18,6 @@ export const GET_ZELLER_CUSTOMERS_LIST = gql`
 const useListZellerCustomers = (role: Role) => {
   const result = useQuery(GET_ZELLER_CUSTOMERS_LIST);
 
-  // Apply client-side filtering
   const filteredData = result.data
     ? {
         listZellerCustomers: {

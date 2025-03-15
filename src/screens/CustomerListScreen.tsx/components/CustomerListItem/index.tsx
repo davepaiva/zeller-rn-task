@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import Text from '../../../ui/components/Text';
-import ProfilePlaceholder from '../../../ui/components/ProfilePlaceholder';
+import Text from '@components/Text';
+import ProfilePlaceholder from '@components/ProfilePlaceholder';
 import {globalStyles} from '@styles/globalStyles';
 
 interface CustomerListItemProps {
@@ -20,8 +20,10 @@ const CustomerListItem: React.FC<CustomerListItemProps> = ({
         <ProfilePlaceholder name={name} />
       </View>
       <View style={[globalStyles.spaceBetween]}>
-        <Text variant="body">{name}</Text>
-        <Text variant="subtitle" color="#666">
+        <Text testID="name" variant="body">
+          {name}
+        </Text>
+        <Text testID="role" variant="subtitle" color="#666">
           {role}
         </Text>
       </View>
