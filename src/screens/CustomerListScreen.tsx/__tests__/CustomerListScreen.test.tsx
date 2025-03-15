@@ -1,4 +1,9 @@
-import {render, screen, waitFor} from '@testing-library/react-native';
+import {
+  render,
+  screen,
+  waitFor,
+  waitForElementToBeRemoved,
+} from '@testing-library/react-native';
 import {MockedProvider} from '@apollo/client/testing';
 import CustomerListScreen from '../index';
 import {GET_ZELLER_CUSTOMERS_LIST} from '@hooks/useListZellerCustomers';
@@ -34,6 +39,7 @@ describe('CustomerListScreen', () => {
     await waitFor(() => {
       expect(screen.getByTestId('loading')).toBeTruthy();
     });
+    await waitForElementToBeRemoved(() => screen.queryByTestId('loading'));
   });
 
   it('should render error state when API fails', async () => {
