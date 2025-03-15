@@ -42,7 +42,6 @@ describe('useListZellerCustomers', () => {
       expect(result.current.loading).toBe(false);
     });
 
-    // Now check the data
     expect(result.current.data).toEqual({
       listZellerCustomers: {
         items: mockCustomers,
