@@ -1,4 +1,5 @@
 import {
+  fireEvent,
   render,
   screen,
   waitFor,
@@ -90,6 +91,46 @@ describe('CustomerListScreen', () => {
       expect(screen.getByTestId('customer-list')).toBeTruthy();
       expect(screen.getByText('John Doe')).toBeTruthy();
       expect(screen.getByText('Jane Smith')).toBeTruthy();
+    });
+  });
+
+  it('should filter customers when radio button selection changes', async () => {
+    const mocks = [
+      {
+        request: {
+          query: GET_ZELLER_CUSTOMERS_LIST,
+        },
+        result: {
+          data: {
+            listZellerCustomers: {
+              items: mockCustomers,
+            },
+          },
+        },
+      },
+    ];
+
+    const {getByTestId} = render(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <CustomerListScreen />
+      </MockedProvider>,
+    );
+
+    await waitFor(() => {
+      expect(screen.getByTestId('customer-list')).toBeTruthy();
+      expect(screen.getByText('John Doe')).toBeTruthy();
+      expect(screen.getByText('Jane Smith')).toBeTruthy();
+    });
+
+    expect(screen.getByText('Admin Users')).toBeTruthy();
+
+    fireEvent.press(getByTestId('radio-button-1'));
+
+    await waitFor(() => {
+      expect(screen.getByText('Manager Users')).toBeTruthy();
+      expect(screen.getByText('Bob Johnson')).toBeTruthy();
+      expect(screen.queryByText('John Doe')).toBeNull();
+      expect(screen.queryByText('Jane Smith')).toBeNull();
     });
   });
 });
