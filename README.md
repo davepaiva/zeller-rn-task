@@ -7,7 +7,8 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 ## Step 1: Add .env file in the root project
 
 ```sh
-BASE_URL=http://192.168.68.101:9002
+BASE_URL=http://<IP_ADDRESS>:<PORT>
+#eg http://192.168.68.101:9002
 ```
 
 ## Step 2: Start Metro
