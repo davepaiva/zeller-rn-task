@@ -20,8 +20,10 @@ const CustomerListItem: React.FC<CustomerListItemProps> = ({
         <ProfilePlaceholder name={name} />
       </View>
       <View style={[globalStyles.spaceBetween]}>
-        <Text variant="body">{name}</Text>
-        <Text variant="subtitle" color="#666">
+        <Text testID="name" variant="body">
+          {name}
+        </Text>
+        <Text testID="role" variant="subtitle" color="#666">
           {role}
         </Text>
       </View>

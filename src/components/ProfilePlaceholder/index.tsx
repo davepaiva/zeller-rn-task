@@ -16,7 +16,9 @@ const ProfilePlaceholder: React.FC<ProfilePlaceholderProps> = ({name}) => {
 
   return (
     <View style={[styles.container]}>
-      <Text color="#428BCA">{getInitials(name)}</Text>
+      <Text testID="initial" color="#428BCA">
+        {getInitials(name)}
+      </Text>
     </View>
   );
 };
