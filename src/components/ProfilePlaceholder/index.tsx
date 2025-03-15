@@ -10,7 +10,9 @@ interface ProfilePlaceholderProps {
 
 const ProfilePlaceholder: React.FC<ProfilePlaceholderProps> = ({name}) => {
   const getInitials = (name: string): string => {
-    const parts = name.split('');
+    const nameString = String(name);
+    if (!nameString) return '';
+    const parts = nameString.split('');
     return parts[0];
   };
 
