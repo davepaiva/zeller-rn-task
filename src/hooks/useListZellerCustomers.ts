@@ -4,8 +4,8 @@ import {Customer} from '@app_types/customer';
 import {Role} from '@app_types/filter';
 
 export const GET_ZELLER_CUSTOMERS_LIST = gql`
-  query ListZellerCustomers($role: String) {
-    listZellerCustomers(filter: {role: {eq: $role}}) {
+  query ListZellerCustomers {
+    listZellerCustomers {
       items {
         id
         name
@@ -16,9 +16,7 @@ export const GET_ZELLER_CUSTOMERS_LIST = gql`
 `;
 
 const useListZellerCustomers = (role: Role, nameSearch?: string) => {
-  const result = useQuery(GET_ZELLER_CUSTOMERS_LIST, {
-    variables: {role},
-  });
+  const result = useQuery(GET_ZELLER_CUSTOMERS_LIST);
 
   const filteredData = result.data
     ? {
