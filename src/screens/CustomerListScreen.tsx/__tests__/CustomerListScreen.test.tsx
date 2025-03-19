@@ -133,4 +133,46 @@ describe('CustomerListScreen', () => {
       expect(screen.queryByText('Jane Smith')).toBeNull();
     });
   });
+
+  it('should filter customers when search input changes', async () => {
+    const mocks = [
+      {
+        request: {
+          query: GET_ZELLER_CUSTOMERS_LIST,
+        },
+        result: {
+          data: {
+            listZellerCustomers: {
+              items: mockCustomers,
+            },
+          },
+        },
+      },
+    ];
+
+    const {getByTestId} = render(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <CustomerListScreen />
+      </MockedProvider>,
+    );
+
+    const searchInput = getByTestId('search-input');
+
+    await waitFor(() => {
+      expect(screen.getByTestId('customer-list')).toBeTruthy();
+      expect(screen.getByText('John Doe')).toBeTruthy();
+      expect(screen.getByText('Jane Smith')).toBeTruthy();
+    });
+
+    expect(screen.getByText('Admin Users')).toBeTruthy();
+
+    fireEvent.changeText(searchInput, 'John');
+
+    await waitFor(() => {
+      expect(screen.getByText('Admin Users')).toBeTruthy();
+      expect(screen.queryByText('Bob Johnson')).toBeNull();
+      expect(screen.getByText('John Doe')).toBeTruthy();
+      expect(screen.queryByText('Jane Smith')).toBeNull();
+    });
+  });
 });
