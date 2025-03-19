@@ -14,10 +14,10 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 type Documents = {
-    "\n  query ListZellerCustomers($role: String) {\n    listZellerCustomers(filter: {role: {eq: $role}}) {\n      items {\n        id\n        name\n        role\n      }\n    }\n  }\n": typeof types.ListZellerCustomersDocument,
+    "\n  query ListZellerCustomers {\n    listZellerCustomers {\n      items {\n        id\n        name\n        role\n      }\n    }\n  }\n": typeof types.ListZellerCustomersDocument,
 };
 const documents: Documents = {
-    "\n  query ListZellerCustomers($role: String) {\n    listZellerCustomers(filter: {role: {eq: $role}}) {\n      items {\n        id\n        name\n        role\n      }\n    }\n  }\n": types.ListZellerCustomersDocument,
+    "\n  query ListZellerCustomers {\n    listZellerCustomers {\n      items {\n        id\n        name\n        role\n      }\n    }\n  }\n": types.ListZellerCustomersDocument,
 };
 
 /**
@@ -37,7 +37,7 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  query ListZellerCustomers($role: String) {\n    listZellerCustomers(filter: {role: {eq: $role}}) {\n      items {\n        id\n        name\n        role\n      }\n    }\n  }\n"): (typeof documents)["\n  query ListZellerCustomers($role: String) {\n    listZellerCustomers(filter: {role: {eq: $role}}) {\n      items {\n        id\n        name\n        role\n      }\n    }\n  }\n"];
+export function gql(source: "\n  query ListZellerCustomers {\n    listZellerCustomers {\n      items {\n        id\n        name\n        role\n      }\n    }\n  }\n"): (typeof documents)["\n  query ListZellerCustomers {\n    listZellerCustomers {\n      items {\n        id\n        name\n        role\n      }\n    }\n  }\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};
