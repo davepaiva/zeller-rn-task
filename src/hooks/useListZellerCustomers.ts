@@ -15,14 +15,26 @@ export const GET_ZELLER_CUSTOMERS_LIST = gql`
   }
 `;
 
-const useListZellerCustomers = (role: Role) => {
-  const result = useQuery(GET_ZELLER_CUSTOMERS_LIST);
+const useListZellerCustomers = (role: Role, nameSearch?: string) => {
+  const result = useQuery(GET_ZELLER_CUSTOMERS_LIST, {
+    variables: {role},
+  });
 
   const filteredData = result.data
     ? {
         listZellerCustomers: {
           items: result.data.listZellerCustomers.items.filter(
-            (customer: Customer) => customer.role === role,
+            (customer: Customer) => {
+              // Filter by role
+              const roleMatch = customer.role === role;
+
+              // Filter by name if nameSearch is provided
+              const nameMatch =
+                !nameSearch ||
+                customer.name?.toLowerCase().includes(nameSearch.toLowerCase());
+
+              return roleMatch && nameMatch;
+            },
           ),
         },
       }

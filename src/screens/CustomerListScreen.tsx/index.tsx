@@ -9,13 +9,15 @@ import ListHeaderComponent from './components/ListHeader';
 import Divider from '@components/Divider';
 import {FilterId} from '@app_types/filter';
 import {Customer} from '@app_types/customer';
-
+import Search from '@components/Search';
 const ItemSeparator = () => <View style={styles.separator} />;
 
 const CustomerListScreen = () => {
   const [selectedFilter, setSelectedFilter] = useState<FilterId>('0');
+  const [searchTerm, setSearchTerm] = useState('');
   const {data, loading, error} = useListZellerCustomers(
     selectedFilter === '0' ? 'Admin' : 'Manager',
+    searchTerm,
   );
 
   const FILTERS: RadioButtonOption[] = useMemo(
@@ -87,9 +89,22 @@ const CustomerListScreen = () => {
     }
   };
 
+  const handleSearch = (text: string) => {
+    setSearchTerm(text);
+  };
+
+  const handleClear = () => {
+    setSearchTerm('');
+  };
+
   return (
     <View style={styles.container}>
-      {/* <Divider /> */}
+      <Search
+        value={searchTerm}
+        onChange={handleSearch}
+        handleClear={handleClear}
+      />
+      <Divider />
       <Text variant="heading">User Types</Text>
       <View>
         <RadioButtons
